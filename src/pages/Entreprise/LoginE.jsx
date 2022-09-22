@@ -30,7 +30,7 @@ const LoginE = () => {
         e.preventDefault();
         admin.map(a => {
             if (a.user === user && a.password === password) {
-                return navigate("/entreprise");
+                return navigate("/entreprise/statistiquee");
             }
         })
 

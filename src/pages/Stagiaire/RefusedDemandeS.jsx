@@ -1,10 +1,9 @@
 import NavBarS from "../../componant/NavBarS";
-
-const Stagiaire = () => {
+const RefusedDemandeS = () => {
     return (
         <>
-        <NavBarS/>
+            <NavBarS />
         </>
     )
 }
-export default Stagiaire;
+export default RefusedDemandeS;

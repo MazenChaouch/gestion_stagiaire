@@ -32,7 +32,7 @@ const LoginS = () => {
         stagiaire.map(s => {
             if (s.email === email && s.password === password) {
                 console.log("ssss");
-                return navigate("/stagiaire");
+                return navigate("/stagiaire/statistiques");
             }
         })
 

@@ -17,12 +17,11 @@ const NavBarS = () => {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
             <NavDropdown title="Demandes" id="collasible-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Faire une Demande</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">Demande accepté</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Demande refusée</NavDropdown.Item>
+              <NavDropdown.Item href="../stagiaire/demandes">Faire une Demande</NavDropdown.Item>
+              <NavDropdown.Item href="../stagiaire/accepteddemandes">Demande accepté</NavDropdown.Item>
+              <NavDropdown.Item href="../stagiaire/refuseddemandes">Demande refusée</NavDropdown.Item>
             </NavDropdown>
-            <Nav.Link href="#features">Stage terminée</Nav.Link>
-            <Nav.Link href="#pricing">Statistique</Nav.Link>
+            <Nav.Link href="../stagiaire/endedstages">Stage terminée</Nav.Link>
           </Nav>
           <Nav>
           <Button variant="light" onClick={logout}>Déconnexion</Button>{''}
