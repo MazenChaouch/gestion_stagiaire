@@ -1,5 +1,27 @@
-.bg-image{
+.bg-image {
   background-image: url('https://img.freepik.com/free-vector/blue-pink-halftone-background_53876-99004.jpg?w=2000');
-            height: 100vh
+  height: 100vh
+}
+.bg-image2 {
+  background-image: url('https://img.freepik.com/free-vector/blue-pink-halftone-background_53876-99004.jpg?w=2000')
+}
+.NavBar{
+  background-color : rgb(0,0,0);
 
+}
+.input {
+  width: 35px;
+  height: 35px;
+  padding: 0;
+  font-size: 24px;
+  text-align: center;
+  margin-right: 2.5px;
+  text-transform: uppercase;
+  color: #494949;
+  font-family: SF Pro Text, SF Pro Icons, Helvetica Neue, Helvetica, Arial,
+    sans-serif;
+  border: 1px solid #d6d6d6;
+  border-radius: 4px;
+  background: #fff;
+  background-clip: padding-box;
 }

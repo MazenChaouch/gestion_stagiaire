@@ -42,7 +42,7 @@ const SignUpE = () => {
                     draggable: true,
                     progress: undefined,
                 });
-                console.log("i hate my self")
+                navigate("/entreprise/logine")
             }
             catch (e) {
                 console.log(e)

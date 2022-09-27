@@ -14,7 +14,7 @@ const LoginE = () => {
 
     const getAdmin = async () => {
         const q = query(collection(fireStore, "admin"));
-        const fetch = onSnapshot(q, (querySnapshot) => {
+        onSnapshot(q, (querySnapshot) => {
             querySnapshot.forEach((doc) => {
                 const result = querySnapshot.docs
                     .map((doc) => ({ ...doc.data(), id: doc.id }));

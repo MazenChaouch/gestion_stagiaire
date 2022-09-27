@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
+import { ToastContainer } from 'react-toastify';
 
 import './App.css';
 import './index.css';
@@ -10,12 +11,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import Home from "./pages/Home";
 import LoginS from "./pages/Stagiaire/LoginS";
 import SignUpS from "./pages/Stagiaire/SignUpS";
-import StatistiqueS from "./pages/Stagiaire/StatistiqueS";
-
-import AcceptedDemandeS from "./pages/Stagiaire/AcceptedDemandeS";
-import DemandeS from "./pages/Stagiaire/DemandeS";
-import RefusedDemandeS from "./pages/Stagiaire/RefusedDemandeS";
 import EndedStageS from "./pages/Stagiaire/EndedStageS";
+
+import MesDemandeS from "./pages/Stagiaire/MesDemandeS";
+import DemandeS from "./pages/Stagiaire/DemandeS";
 
 import LoginE from "./pages/Entreprise/LoginE";
 import SignUpE from "./pages/Entreprise/SignUpE";
@@ -30,13 +29,22 @@ import ExpiredStageE from "./pages/Entreprise/ExpiredStageE";
 const App = () => {
   return (
     <Router>
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={true}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="stagiaire">
-          <Route path="statistiques" element={<StatistiqueS />} />
           <Route path="demandes" element={<DemandeS />} />
-          <Route path="accepteddemandes" element={<AcceptedDemandeS />} />
-          <Route path="refuseddemandes" element={<RefusedDemandeS />} />
+          <Route path="mesdemandes" element={<MesDemandeS />} />
           <Route path="endedstages" element={<EndedStageS />} />
           <Route path="logins" element={<LoginS />} />
           <Route path="signups" element={<SignUpS />} />

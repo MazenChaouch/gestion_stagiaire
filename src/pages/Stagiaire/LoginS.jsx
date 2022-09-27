@@ -1,9 +1,10 @@
 import { Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react"
-import { collection, doc, onSnapshot, query } from "firebase/firestore";
+import { collection, onSnapshot, query } from "firebase/firestore";
 import { fireStore } from "../../auth/Firebase";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const LoginS = () => {
 
@@ -14,7 +15,7 @@ const LoginS = () => {
 
     const getStagiaire = async () => {
         const q = query(collection(fireStore, "stagiaire"));
-        const fetch = onSnapshot(q, (querySnapshot) => {
+        onSnapshot(q, (querySnapshot) => {
             querySnapshot.forEach((doc) => {
                 const result = querySnapshot.docs
                     .map((doc) => ({ ...doc.data(), id: doc.id }));
@@ -28,13 +29,42 @@ const LoginS = () => {
 
     const log = (e) => {
         e.preventDefault();
-        console.log(stagiaire)
+        let user = false;
         stagiaire.map(s => {
+
             if (s.email === email && s.password === password) {
-                console.log("ssss");
-                return navigate("/stagiaire/statistiques");
+                user = true
             }
+            else
+                user = user || false
+
         })
+        if (user) {
+            navigate("/stagiaire/mesdemandes");
+            toast.success('Logged in', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark"
+            });
+        }
+
+        else if (!user) {
+            toast.error('Login information are unavaileble', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark"
+            });
+        }
 
     }
     return (
