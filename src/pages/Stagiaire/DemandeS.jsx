@@ -4,9 +4,44 @@ import NavBarS from "../../componant/NavBarS";
 import PhoneInput from 'react-phone-number-input'
 import 'react-phone-number-input/style.css'
 import AuthCode from 'react-auth-code-input';
-
+import generateId from "../../lib/generateId";
+import { toast } from 'react-toastify';
+import { setDoc, doc } from "firebase/firestore";
+import { fireStore } from "../../auth/Firebase";
 
 const DemandeS = () => {
+
+    let id = generateId(); 
+
+    const addDemande = async (e) => {
+        e.preventDefault();
+        try {
+            await setDoc(doc(fireStore, "demande", id), {
+                nom:nom,
+                prenom:prenom,
+                email:email,
+                niveau:niveau,
+                demande:demande,
+                address:address,
+                sexe:sexe,
+                tel:tel,
+                codepostal:codepostal,
+                universite:universite
+            });
+            toast.success('Demande envoyer', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        }
+        catch (e) {
+            console.log(e)
+        }
+    }
 
     const [nom, setNom] = useState([]);
     const [prenom, setPrenom] = useState([]);
@@ -17,6 +52,7 @@ const DemandeS = () => {
     const [sexe, setSexe] = useState([]);
     const [tel, setTel] = useState("");
     const [codepostal, setCodepostal] = useState("");
+    const [universite, setUniversite] = useState("");
     const AuthInputRef = useRef(null);
 
     return (
@@ -25,7 +61,7 @@ const DemandeS = () => {
             <div className="d-flex justify-content-center align-items-center">
                 <div>
                     <h1 className="fw-bolder fs-1 d-block my-5">Formulaire d'une demande de stage </h1>
-                    <Form>
+                    <Form onSubmit={addDemande}>
                         <Card className="my-5">
                             <Card.Body>
                                 <div className="row">
@@ -67,9 +103,9 @@ const DemandeS = () => {
                                     <div className="col-sm-3">
                                         <Form.Label className="fs-5 fw-bold">Sexe</Form.Label>
                                     </div>
-                                    <div className="col-sm-3">
-                                        <Form.Check inline label="Masculin" name="sexe" value={sexe} onChange={(e) => setSexe(e.target.value)} type="radio" />
-                                        <Form.Check inline label="Feminin" name="sexe" value={sexe} onChange={(e) => setSexe(e.target.value)} type="radio" />
+                                    <div className="col-sm-3"> 
+                                        <Form.Check  label="Masculin" name="masculin" value="Masculin" type="radio" />
+                                        <Form.Check  label="Feminin" name="eminin" value="Feminin" type="radio" />
                                     </div>
                                 </div>
                                 <div className="row my-3">
@@ -81,7 +117,7 @@ const DemandeS = () => {
                                 <div className="row my-3">
                                     <div className="col-md-12">
                                         <Form.Label className="fs-5 fw-bold">Université</Form.Label>
-                                        <Form.Control type="email" value={universite} placeholder="Entrer votre université actual"></Form.Control>
+                                        <Form.Control type="text" value={universite} onChange={(e) => setUniversite(e.target.value)} placeholder="Entrer votre université actual"></Form.Control>
                                     </div>
                                 </div>
                                 <div className="row my-3">
@@ -100,8 +136,11 @@ const DemandeS = () => {
                                             onChange={setTel}
                                         />
                                     </div>
-                                    <div className="col-md-2 m-auto mt-4 p-2">
-                                    <Button variant="dark" >Envoyer</Button>
+
+                                </div>
+                                <div className="row my-3">
+                                <div className="col-md-6">
+                                    <Button variant="dark" type="submit" >Envoyer</Button>
                                     </div>
                                 </div>
 
