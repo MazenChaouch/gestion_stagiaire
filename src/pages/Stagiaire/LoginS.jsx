@@ -29,18 +29,20 @@ const LoginS = () => {
 
     const log = (e) => {
         e.preventDefault();
+        let id = null ;
         let user = false;
         stagiaire.map(s => {
 
             if (s.email === email && s.password === password) {
                 user = true
+                id = s.id
             }
             else
                 user = user || false
 
         })
         if (user) {
-            navigate("/stagiaire/mesdemandes");
+            navigate("/stagiaire/mesdemandes/"+id);
             toast.success('Logged in', {
                 position: "top-center",
                 autoClose: 5000,
@@ -69,7 +71,7 @@ const LoginS = () => {
     }
     return (
         <>
-            <div className="bg-image">
+            <div className="bg-image2">
                 <div className="d-flex justify-content-center align-items-center h-100">
                     <div>
                         <Link to="/" className="text-black text-decoration-none"><h1 className="fw-bolder fs-1 d-block ">Login Stagiaire </h1></Link>
@@ -84,7 +86,7 @@ const LoginS = () => {
                                 <Form.Label>Password</Form.Label>
                                 <Form.Control type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="form-control" required placeholder="Password" />
                             </Form.Group>
-                            <Button variant="primary" type="submit">
+                            <Button variant="primary" type="submit" >
                                 Login
                             </Button>
                         </Form>

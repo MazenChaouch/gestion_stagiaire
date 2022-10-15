@@ -52,10 +52,10 @@ const SignUpE = () => {
 
     return (<>
 
-        <div className="bg-image">
+        <div className="bg-image2">
             <div className="d-flex justify-content-center align-items-center h-100">
                 <div>
-                    <Link to="/" className="text-black text-decoration-none"><h1 className="fw-bolder fs-1 d-block">SignUp Admin </h1></Link>
+                    <Link to="/" className="text-black text-decoration-none"><h1 className="fw-bolder fs-1 d-block">SignUp Entreprise </h1></Link>
                     <Form className="mt-5" onSubmit={submitRegistration}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>User</Form.Label>

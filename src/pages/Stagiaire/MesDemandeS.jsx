@@ -1,13 +1,15 @@
-import { Alert, Button, Table } from "react-bootstrap";
+import { Button, Table } from "react-bootstrap";
 import NavBarS from "../../componant/NavBarS";
 import { useEffect, useState } from "react"
-import { collection, onSnapshot, query } from "firebase/firestore";
+import { collection, deleteDoc, doc, onSnapshot, query, where } from "firebase/firestore";
 import { fireStore } from "../../auth/Firebase";
-
-
+import { AiFillDelete } from "react-icons/ai";
+import { useParams } from "react-router-dom";
 
 
 const MesDemandeS = () => {
+    let { stagiaireId } = useParams();
+    console.log(stagiaireId)
     const statut = (s) => {
         if (s==="en attend" ){
             return (
@@ -24,12 +26,12 @@ const MesDemandeS = () => {
     }
     const [demande, setDemande] = useState([]);
     const getDemande = async () => {
-        const q = query(collection(fireStore, "demande"));
+        const q = query(collection(fireStore, "demande"), where("stagiaireId" ,"==" , stagiaireId));
         onSnapshot(q, (querySnapshot) => {
             querySnapshot.forEach((doc) => {
                 const result = querySnapshot.docs
                     .map((doc) => ({ ...doc.data(), id: doc.id }));
-                setDemande(result);
+                    setDemande(result);
             });
         });
     }
@@ -62,9 +64,8 @@ const MesDemandeS = () => {
                     </tr>
                 </thead>
                 <tbody>{
-                    demande.map(
-                        (d, index) => {
-                            return (
+                    demande.map((d, index) => {
+                            return ( 
                                 <tr key={index} className="text-center" >
                                     <td>{index + 1}</td>
                                     <td>{d.nom}</td>
@@ -75,9 +76,10 @@ const MesDemandeS = () => {
                                     <td>{d.sexe}</td>
                                     <td>{d.niveau}</td>
                                     <td>{d.universite}</td>
-                                    <td><Button variant="dark" href={d.pdf} size="sm">Link</Button></td>
+                                    <td><Button variant="dark" target={'_blank'} href={d.pdf} size="sm">Link</Button></td>
                                     <td>{d.tel}</td>
                                     <td>{statut(d.statut)}</td>
+                                    <td><Button variant="danger" size="sm" onClick={() => deleteDoc(doc(fireStore, "demande", d.id))}><AiFillDelete size={25}   /></Button></td>
                                 </tr>
                             )
                         }

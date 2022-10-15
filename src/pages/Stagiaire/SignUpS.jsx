@@ -92,7 +92,7 @@ const SignUpS = () => {
     return (
         <>
 
-            <div className="bg-image">
+            <div className="bg-image2">
                 <div className="d-flex justify-content-center align-items-center h-100">
                     <div>
                         <Link to="/" className="text-black text-decoration-none"><h1 className="fw-bolder fs-1 d-block">SignUp Stagiaire </h1></Link>

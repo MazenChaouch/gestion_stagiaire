@@ -1,8 +1,9 @@
 import {Container,Nav,Navbar,Button} from 'react-bootstrap';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const NavBarS = () => {
     const navigate = useNavigate();
+    let { stagiaireId } = useParams();
     const logout = () => {
       return(
         navigate("/stagiaire/logins")
@@ -16,9 +17,9 @@ const NavBarS = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-              <Nav.Link href="../stagiaire/mesdemandes">Mes Demande</Nav.Link>
-              <Nav.Link href="../stagiaire/demandes">Faire une Demande</Nav.Link>
-              <Nav.Link href="../stagiaire/endedstages">Stage terminée</Nav.Link>
+              <Nav.Link href={`../mesdemandes/${stagiaireId}`}>Mes Demande</Nav.Link>
+              <Nav.Link href={`../demandes/${stagiaireId}`}>Faire une Demande</Nav.Link>
+              <Nav.Link href={`../endedstages/${stagiaireId}`}>Stage terminée</Nav.Link>
           </Nav>
           <Nav>
           <Button variant="light" onClick={logout}>Déconnexion</Button>

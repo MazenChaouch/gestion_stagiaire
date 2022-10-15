@@ -1,6 +1,7 @@
 import { Button, Container, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import React from "react";
+import Footer from "../componant/Footer";
 const Home = () => {
 
     return (
@@ -20,7 +21,7 @@ const Home = () => {
                                     <Link to={'/stagiaire/signups'}><Button variant="outline-info">Sign Up</Button></Link>
                                 </Form.Group>
                                 <Form.Group className="mb-3">
-                                    <Form.Label className="fs-3">Admin</Form.Label><br />
+                                    <Form.Label className="fs-3">Entreprise</Form.Label><br />
                                     <Link to={'/entreprise/logine'}><Button variant="outline-info">Login</Button></Link>
                                     <Link to={'/entreprise/signupe'}><Button variant="outline-info">Sign Up</Button></Link>
                                 </Form.Group>
@@ -31,7 +32,7 @@ const Home = () => {
                 </div>
             </div>
 
-
+        <Footer/>
         </>
     )
 }

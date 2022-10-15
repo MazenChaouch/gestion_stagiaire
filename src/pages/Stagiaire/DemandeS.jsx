@@ -9,12 +9,12 @@ import { toast } from 'react-toastify';
 import { setDoc, doc } from "firebase/firestore";
 import { fireStore, storage } from "../../auth/Firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { Navigate } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 const DemandeS = () => {
 
     let id = generateId();
+    let { stagiaireId } = useParams();
     
-
     const addDemande = async (e) => {
         e.preventDefault();
         const storageRef = ref(storage, `demande/${id}`);
@@ -54,7 +54,8 @@ const DemandeS = () => {
                         tel: tel,
                         codepostal: codepostal,
                         universite: universite,
-                        statut, statut
+                        statut: statut,
+                        stagiaireId :stagiaireId
                     });
                     toast.success('Demande envoyer', {
                         position: "top-center",
