@@ -1,5 +1,5 @@
-import React from "react";
-import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Route, Routes, BrowserRouter as Router, Navigate } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 
 import './App.css';
@@ -27,6 +27,23 @@ import ExpiredStageE from "./pages/Entreprise/ExpiredStageE";
 
 
 const App = () => {
+
+  const [loggedIn, setLoggedIn] = useState(false)
+  const [id, setId] = useState('')
+
+
+  useEffect(() => {
+    const user = localStorage.getItem('user')
+    setId(user)
+    if (user && user !== '') {
+      setLoggedIn(true)
+    } else {
+      setLoggedIn(false)
+    }
+
+  }, [loggedIn])
+
+
   return (
     <Router>
       <ToastContainer
@@ -43,14 +60,19 @@ const App = () => {
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="stagiaire">
-          <Route path="demandes/:stagiaireId" element={<DemandeS />} />
-          <Route path="mesdemandes/:stagiaireId" element={<MesDemandeS />} />
-          <Route path="endedstages:stagiaireId" element={<EndedStageS />} />
-          <Route path="logins" element={<LoginS />} />
-          <Route path="signups" element={<SignUpS />} />
+
+          <Route path="demandes/:stagiaireId" element={loggedIn ? <DemandeS /> : <Navigate to="/" replace />} />
+          <Route path="mesdemandes/:stagiaireId" element={loggedIn ? <MesDemandeS /> : <Navigate to="/" replace />} />
+          <Route path="endedstages:stagiaireId" element={loggedIn ? <EndedStageS /> : <Navigate to="/" replace />} />
+
+
+          <Route path="logins" element={!loggedIn ? <LoginS /> : <Navigate to={"mesdemandes/" + id} replace />} />
+          <Route path="signups" element={!loggedIn ? <SignUpS /> : <Navigate to={"mesdemandes/" + id} replace />} />
+
+
         </Route>
         <Route path="entreprise">
-        <Route path="statistiquee" element={<StatistiqueE />} />
+          <Route path="statistiquee" element={<StatistiqueE />} />
           <Route path="demandee" element={<DemandeE />} />
           <Route path="AcceptedDemandee" element={<AcceptedDemandeE />} />
           <Route path="refuseddemandee" element={<RefusedDemandeE />} />

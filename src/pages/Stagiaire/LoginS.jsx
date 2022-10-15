@@ -53,9 +53,12 @@ const LoginS = () => {
                 progress: undefined,
                 theme: "dark"
             });
-        }
 
-        else if (!user) {
+            // 
+
+            localStorage.setItem('user', id)
+
+        }else{
             toast.error('Login information are unavaileble', {
                 position: "top-center",
                 autoClose: 5000,
