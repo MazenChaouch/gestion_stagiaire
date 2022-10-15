@@ -29,15 +29,15 @@ const LoginE = () => {
 
     const log = (e) => {
         e.preventDefault();
-        let user = false;
+        let u = false;
         admin.map(a => {
             if (a.user === user && a.password === password) {
-                user = true
+                u = true
             }
             else
-                user = user || false
+                u = u || false
             })
-            if (user) {
+            if (u) {
                 navigate("/entreprise/statistiquee");
                 toast.success('Logged in', {
                     position: "top-center",
@@ -51,7 +51,7 @@ const LoginE = () => {
                 });
             }
     
-            else if (!user) {
+            else if (!u) {
                 toast.error('Login information are unavaileble', {
                     position: "top-center",
                     autoClose: 5000,

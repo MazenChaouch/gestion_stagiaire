@@ -10,6 +10,7 @@ import { setDoc, doc } from "firebase/firestore";
 import { fireStore, storage } from "../../auth/Firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { Navigate, useParams } from "react-router-dom";
+import Footer from "../../componant/Footer";
 const DemandeS = () => {
 
     let id = generateId();
@@ -180,6 +181,7 @@ const DemandeS = () => {
                     </Form>
                 </div>
             </div>
+            <Footer/>
         </>
     )
 }
