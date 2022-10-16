@@ -42,6 +42,7 @@ const LoginS = () => {
 
         })
         if (user) {
+            localStorage.setItem('user', id)
             navigate("/stagiaire/mesdemandes/"+id);
             toast.success('Logged in', {
                 position: "top-center",
@@ -53,12 +54,9 @@ const LoginS = () => {
                 progress: undefined,
                 theme: "dark"
             });
+        }
 
-            // 
-
-            localStorage.setItem('user', id)
-
-        }else{
+        else {
             toast.error('Login information are unavaileble', {
                 position: "top-center",
                 autoClose: 5000,

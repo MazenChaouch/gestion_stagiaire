@@ -27,23 +27,6 @@ import ExpiredStageE from "./pages/Entreprise/ExpiredStageE";
 
 
 const App = () => {
-
-  const [loggedIn, setLoggedIn] = useState(false)
-  const [id, setId] = useState('')
-
-
-  useEffect(() => {
-    const user = localStorage.getItem('user')
-    setId(user)
-    if (user && user !== '') {
-      setLoggedIn(true)
-    } else {
-      setLoggedIn(false)
-    }
-
-  }, [loggedIn])
-
-
   return (
     <Router>
       <ToastContainer
@@ -61,13 +44,13 @@ const App = () => {
         <Route exact path="/" element={<Home />} />
         <Route path="stagiaire">
 
-          <Route path="demandes/:stagiaireId" element={loggedIn ? <DemandeS /> : <Navigate to="/" replace />} />
-          <Route path="mesdemandes/:stagiaireId" element={loggedIn ? <MesDemandeS /> : <Navigate to="/" replace />} />
-          <Route path="endedstages:stagiaireId" element={loggedIn ? <EndedStageS /> : <Navigate to="/" replace />} />
+          <Route path="demandes/:stagiaireId" element={<DemandeS />} />
+          <Route path="mesdemandes/:stagiaireId" element={<MesDemandeS />} />
+          <Route path="endedstages/:stagiaireId" element={<EndedStageS />} />
 
 
-          <Route path="logins" element={!loggedIn ? <LoginS /> : <Navigate to={"mesdemandes/" + id} replace />} />
-          <Route path="signups" element={!loggedIn ? <SignUpS /> : <Navigate to={"mesdemandes/" + id} replace />} />
+          <Route path="logins" element={<LoginS />} />
+          <Route path="signups" element={<SignUpS/>} />
 
 
         </Route>

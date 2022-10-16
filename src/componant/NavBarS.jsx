@@ -5,10 +5,8 @@ const NavBarS = () => {
     const navigate = useNavigate();
     let { stagiaireId } = useParams();
     const logout = () => {
-      return(
-        navigate("/stagiaire/logins")
-
-      )
+      localStorage.removeItem("user")
+      navigate("/stagiaire/logins")
     } 
     return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
