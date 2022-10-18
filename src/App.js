@@ -21,7 +21,7 @@ import SignUpE from "./pages/Entreprise/SignUpE";
 import StatistiqueE from "./pages/Entreprise/StatistiqueE";
 
 import AcceptedDemandeE from "./pages/Entreprise/AcceptedDemandeE";
-import DemandeE from "./pages/Entreprise/AcceptedDemandeE";
+import DemandeE from "./pages/Entreprise/DemandeE";
 import RefusedDemandeE from "./pages/Entreprise/RefusedDemandeE";
 import ExpiredStageE from "./pages/Entreprise/ExpiredStageE";
 

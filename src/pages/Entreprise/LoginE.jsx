@@ -33,6 +33,7 @@ const LoginE = () => {
         admin.map(a => {
             if (a.user === user && a.password === password) {
                 u = true
+                
             }
             else
                 u = u || false

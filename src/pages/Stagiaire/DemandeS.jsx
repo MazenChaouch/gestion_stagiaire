@@ -67,7 +67,8 @@ const DemandeS = () => {
                         draggable: true,
                         progress: undefined,
                     });
-                    Navigate("")
+                    Navigate("/stagiaire/mesdemandes/"+stagiaireId);
+                    console.log("Demande envoyer");
                 }  
         );
             }

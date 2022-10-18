@@ -28,11 +28,7 @@
   background: #fff;
   background-clip: padding-box;
 }
-.body{
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-}
-.footer{
+.Footer {
   margin-top: auto;
 }
+
