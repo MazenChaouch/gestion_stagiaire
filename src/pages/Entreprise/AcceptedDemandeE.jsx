@@ -10,7 +10,7 @@ const AcceptedDemandeE = () => {
     console.log(timestamp)
 
     const getDemande = async () => {
-        const q = query(collection(fireStore, "demande"),where("datedefin","<",timestamp),);
+        const q = query(collection(fireStore, "demande"),where("datedefin","<",timestamp));
         onSnapshot(q, (querySnapshot) => {
             querySnapshot.forEach((doc) => {
                 const result = querySnapshot.docs
