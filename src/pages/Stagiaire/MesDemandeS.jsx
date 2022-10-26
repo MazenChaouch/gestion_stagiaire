@@ -1,15 +1,13 @@
 import { Button, Form, Modal, ModalBody, ModalFooter, ModalHeader, Table } from "react-bootstrap";
 import NavBarS from "../../componant/NavBarS";
-import { useEffect, useRef, useState } from "react"
-import { collection, deleteDoc, doc, onSnapshot, query, where, updateDoc } from "firebase/firestore";
+import { useEffect, useState } from "react"
+import { collection, deleteDoc, doc, onSnapshot, query, where, updateDoc, setDoc } from "firebase/firestore";
 import { fireStore, storage } from "../../auth/Firebase";
 import { MdOutlineDelete } from "react-icons/md";
 import { TbEdit } from "react-icons/tb";
 import { Navigate, useParams } from "react-router-dom";
 import PhoneInput from 'react-phone-number-input'
 import 'react-phone-number-input/style.css'
-import AuthCode from 'react-auth-code-input';
-import Footer from "../../componant/Footer";
 import { toast } from "react-toastify";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
@@ -19,10 +17,20 @@ const MesDemandeS = () => {
     const [tempId, setTempId] = useState("");
 
     const handleClose = () => setShow(false);
-    const handleShow = (s,id) => {
-        if (s === "en attend") {
+    const handleShow = (d) => {
+        if (d.statut === "en attend") {
             setShow(true)
-            setTempId(id)
+            setNom(d.nom)
+            setPrenom(d.prenom)
+            setAdress(d.address)
+            setCodepostal(d.codepostal)
+            setEmail(d.email)
+            setPdf(d.pdf)
+            setUniversite(d.universite)
+            setNiveau(d.niveau)
+            setSexe(d.sexe)
+            setTel(d.tel)
+            setTempId(d.id)
         }
         else {
             toast.error('Demande can`t be modified', {
@@ -64,10 +72,9 @@ const MesDemandeS = () => {
             });
         });
     }
-    const addDemande = async (e) => {
-        e.preventDefault();
+    const addDemande = () => {
         const storageRef = ref(storage, `demande/${tempId}`);
-
+        console.log("hello")
         const uploadTask = uploadBytesResumable(storageRef, pdf);
         uploadTask.on('state_changed',
             (snapshot) => {
@@ -92,7 +99,7 @@ const MesDemandeS = () => {
             },
             () => {
                 getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
-                    updateDoc(doc(fireStore, "demande", tempId), {
+                     setDoc(doc(fireStore, "demande", tempId), {
                         nom: nom,
                         prenom: prenom,
                         email: email,
@@ -116,11 +123,12 @@ const MesDemandeS = () => {
                         draggable: true,
                         progress: undefined,
                     });
-                    Navigate("/stagiaire/mesdemandes/" + stagiaireId);
                 }
                 );
             }
-            
+            useEffect(() => {
+                getDemande();
+            }, [])
     const [nom, setNom] = useState("");
     const [prenom, setPrenom] = useState("");
     const [email, setEmail] = useState("");
@@ -132,7 +140,7 @@ const MesDemandeS = () => {
     const [universite, setUniversite] = useState("");
     const [statut] = useState("en attend");
     const [pdf, setPdf] = useState(null);
-    const AuthInputRef = useRef(null);
+    
 
     return (
         <>
@@ -194,7 +202,7 @@ const MesDemandeS = () => {
                     Modification d'une demande
                 </ModalHeader>
                 <ModalBody>
-                    <Form onSubmit={addDemande()} method="post">
+                    <Form onSubmit={addDemande} method="post">
                         <div className="row">
                             <div className="col-md-6">
                                 <Form.Label className="fs-5 fw-bold">Nom</Form.Label>
@@ -212,16 +220,7 @@ const MesDemandeS = () => {
                             </div>
                             <div className="col-md-4">
                                 <Form.Label className="fs-5 fw-bold">Code postal</Form.Label>
-                                <AuthCode
-                                    key={'numeric'}
-                                    allowedCharacters={'numeric'}
-                                    ref={AuthInputRef}
-                                    onChange={setCodepostal}
-                                    inputClassName='input'
-                                    length={4}
-                                    isPassword={false}
-                                    autoFocus={false}
-                                />
+                                <Form.Control type="text" value={codepostal} onChange={(e)=> setCodepostal(e.target.value)} maxLength={4}></Form.Control>
                             </div>
                         </div>
                         <div className="row my-3">
@@ -274,12 +273,14 @@ const MesDemandeS = () => {
                 <ModalFooter>
                     <div className="row my-3">
                         <div className="col-md-6">
+                            <Button variant="dark"  onClick={handleClose} >Cancel</Button>
+                        </div>
+                        <div className="col-md-6">
                             <Button variant="dark" type="submit" >Modifier</Button>
                         </div>
                     </div>
                 </ModalFooter>
             </Modal>
-            <Footer />
         </>
     )
 }

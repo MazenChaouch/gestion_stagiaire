@@ -1,12 +1,14 @@
 import { Button, Container, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import React from "react";
+import Header from "../componant/Header";
 import Footer from "../componant/Footer";
+
 const Home = () => {
 
     return (
         <>
-
+   <Header/>
             <div className="bg-image" >
                 <div className="d-flex justify-content-center align-items-center h-100">
                     <div>
@@ -31,7 +33,8 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-
+           
+     
         <Footer/>
         </>
     )

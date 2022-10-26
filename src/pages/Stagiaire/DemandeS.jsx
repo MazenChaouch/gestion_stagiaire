@@ -58,6 +58,7 @@ const DemandeS = () => {
                         statut: statut,
                         stagiaireId :stagiaireId
                     });
+                    Navigate("/stagiaire/mesdemandes/"+stagiaireId);
                     toast.success('Demande envoyer', {
                         position: "top-center",
                         autoClose: 5000,
@@ -67,9 +68,9 @@ const DemandeS = () => {
                         draggable: true,
                         progress: undefined,
                     });
-                    Navigate("/stagiaire/mesdemandes/"+stagiaireId);
-                    console.log("Demande envoyer");
-                }  
+                    
+                    console.log("Demande envoyer"); 
+                }
         );
             }
         );
