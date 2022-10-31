@@ -24,6 +24,8 @@ import AcceptedDemandeE from "./pages/Entreprise/AcceptedDemandeE";
 import DemandeE from "./pages/Entreprise/DemandeE";
 import RefusedDemandeE from "./pages/Entreprise/RefusedDemandeE";
 import ExpiredStageE from "./pages/Entreprise/ExpiredStageE";
+import Apropos from "./pages/Apropos";
+import Contact from "./pages/Contact";
 
 
 const App = () => {
@@ -41,6 +43,8 @@ const App = () => {
         pauseOnHover
       />
       <Routes>
+        <Route exact path="/apropos" element={<Apropos />} />
+        <Route exact path="/contact" element={<Contact />} />
         <Route exact path="/" element={<Home />} />
         <Route path="stagiaire">
 

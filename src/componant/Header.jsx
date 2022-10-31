@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom"
-import { Navbar, Container, Nav, Button } from "react-bootstrap"
+import { Navbar, Container, Nav } from "react-bootstrap"
 const Header = () => {
     return (
+        <div>
         <Navbar className="sticky" collapseOnSelect expand="sm" style={{backgroundColor: "#87CEFA"}}>
         <Container>
             <Navbar.Brand className="text-white fw-bold" >
-                <Link to="/" className="text-white ">ENVAST_Stagiaire</Link>
+                <Link to="/" className="text-black ">ENVAST_Stagiaire</Link>
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
@@ -15,14 +16,18 @@ const Header = () => {
                         </Nav.Link>*/}
                     </Nav>
                     <Nav>
-                        <Link to={'/'}><Button  variant="light" className="fw-bold">Accueil</Button></Link>
-                    </Nav>
-                    <Nav className="mx-1">
-                        <Link to={'/Apropos'}><Button  variant="light" type="submit" className="fw-bold">A propos</Button></Link>
+                        <Link to={'/'}>Accueil</Link>
+                    </Nav>{' '}
+                    <Nav >
+                        <Link to={'apropos'}>A propos</Link>
+                    </Nav>{'   '}
+                    <Nav >
+                        <Link to={'contact'}>Contact</Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
         </Navbar>
+        </div>
    ); }
     export default Header;
     
