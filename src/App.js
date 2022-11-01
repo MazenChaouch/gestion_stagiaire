@@ -11,19 +11,18 @@ import 'react-toastify/dist/ReactToastify.css';
 import Home from "./pages/Home";
 import LoginS from "./pages/Stagiaire/LoginS";
 import SignUpS from "./pages/Stagiaire/SignUpS";
-import EndedStageS from "./pages/Stagiaire/EndedStageS";
+
 
 import MesDemandeS from "./pages/Stagiaire/MesDemandeS";
 import DemandeS from "./pages/Stagiaire/DemandeS";
 
 import LoginE from "./pages/Entreprise/LoginE";
-import SignUpE from "./pages/Entreprise/SignUpE";
-import StatistiqueE from "./pages/Entreprise/StatistiqueE";
+import SignUpE from "./pages/Entreprise/SignUpE"
 
 import AcceptedDemandeE from "./pages/Entreprise/AcceptedDemandeE";
 import DemandeE from "./pages/Entreprise/DemandeE";
 import RefusedDemandeE from "./pages/Entreprise/RefusedDemandeE";
-import ExpiredStageE from "./pages/Entreprise/ExpiredStageE";
+
 import Apropos from "./pages/Apropos";
 import Contact from "./pages/Contact";
 
@@ -50,7 +49,7 @@ const App = () => {
 
           <Route path="demandes/:stagiaireId" element={<DemandeS />} />
           <Route path="mesdemandes/:stagiaireId" element={<MesDemandeS />} />
-          <Route path="endedstages/:stagiaireId" element={<EndedStageS />} />
+          
 
 
           <Route path="logins" element={<LoginS />} />
@@ -59,11 +58,10 @@ const App = () => {
 
         </Route>
         <Route path="entreprise">
-          <Route path="statistiquee" element={<StatistiqueE />} />
           <Route path="demandee" element={<DemandeE />} />
           <Route path="AcceptedDemandee" element={<AcceptedDemandeE />} />
           <Route path="refuseddemandee" element={<RefusedDemandeE />} />
-          <Route path="expiredstagee" element={<ExpiredStageE />} />
+          
           <Route path="logine" element={<LoginE />} />
           <Route path="signupe" element={<SignUpE />} />
         </Route>

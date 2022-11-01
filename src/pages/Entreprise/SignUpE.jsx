@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 import generateId from "../../lib/generateId";
 import 'react-toastify/dist/ReactToastify.css';
+import Header from "../../componant/Header";
+import Footer from "../../componant/Footer";
 
 const SignUpE = () => {
     const navigate = useNavigate();
@@ -51,11 +53,11 @@ const SignUpE = () => {
     }
 
     return (<>
-
+<Header/>
         <div className="bg-image2">
             <div className="d-flex justify-content-center align-items-center h-100">
-                <div>
-                    <Link to="/" className="text-black text-decoration-none"><h1 className="fw-bolder fs-1 d-block">SignUp Entreprise </h1></Link>
+                <div className="glass-effect">
+                    <label className="text-black text-decoration-none"><h1 className="fw-bolder fs-1 d-block">SignUp Entreprise </h1></label>
                     <Form className="mt-5" onSubmit={submitRegistration}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>User</Form.Label>
@@ -73,7 +75,7 @@ const SignUpE = () => {
             </div>
         </div>
 
-
+<Footer/>
     </>
 
 

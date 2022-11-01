@@ -5,6 +5,8 @@ import { collection, doc, onSnapshot, query } from "firebase/firestore";
 import { fireStore } from "../../auth/Firebase";
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
+import Header from "../../componant/Header";
+import Footer from "../../componant/Footer";
 
 const LoginE = () => {
 
@@ -39,7 +41,7 @@ const LoginE = () => {
                 u = u || false
             })
             if (u) {
-                navigate("/entreprise/statistiquee");
+                navigate("/entreprise/demandee");
                 toast.success('Logged in', {
                     position: "top-center",
                     autoClose: 5000,
@@ -67,11 +69,11 @@ const LoginE = () => {
         }
     return (
         <>
-
+<Header/>
             <div className="bg-image2">
                 <div className="d-flex justify-content-center align-items-center h-100">
-                    <div>
-                        <Link to="/" className="text-black text-decoration-none"><h1 className="fw-bolder fs-1 d-block">Login Entreprise </h1></Link>
+                    <div className="glass-effect">
+                        <label className="text-black text-decoration-none"><h1 className="fw-bolder fs-1 d-block">Login Entreprise </h1></label>
                         <Form className="mt-5" onSubmit={log}>
                             <Form.Group className="mb-3" controlId="formBasicEmail">
                                 <Form.Label>User name</Form.Label>
@@ -89,7 +91,7 @@ const LoginE = () => {
                     </div>
                 </div>
             </div>
-
+<Footer/>
 
         </>);
 

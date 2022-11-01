@@ -4,6 +4,7 @@ import { collection, deleteDoc,doc, onSnapshot, query, where } from "firebase/fi
 import { useEffect, useState } from "react"
 import { Button, Table } from "react-bootstrap";
 import { MdOutlineDelete } from "react-icons/md";
+import Footer from "../../componant/Footer";
 const RefusedDemandeE = () => {
     const [demande, setDemande] = useState([]);
 
@@ -25,12 +26,13 @@ const RefusedDemandeE = () => {
     return (
         <>
             <NavBarE />
+            <div className="img2">
             <div className="fs-1 fw-bold text-center p-5">
                 Les Demandes Refusées
             </div>
-            <Table striped>
+            <Table className="table-bordered">
                 <thead>
-                    <tr className="text-center">
+                    <tr className="text-center bg-dark text-white">
                         <th>#</th>
                         <th>Nom</th>
                         <th>Prenom</th>
@@ -43,13 +45,13 @@ const RefusedDemandeE = () => {
                         <th>Demande</th>
                         <th>Telephone</th>
                         <th>Statut</th>
-                        <th>Delete</th>
+                        <th>Supprimer</th>
                     </tr>
                 </thead>
                 <tbody>{
                     demande.map((d, index) => {
                             return ( 
-                                <tr key={index} className="text-center" >
+                                <tr key={index} className="text-center bg-light text-black" >
                                     <td>{index + 1}</td>
                                     <td>{d.nom}</td>
                                     <td>{d.prenom}</td>
@@ -70,6 +72,8 @@ const RefusedDemandeE = () => {
                 }
                 </tbody>
             </Table>
+            </div>
+            <Footer/>
         </>
     )
 }

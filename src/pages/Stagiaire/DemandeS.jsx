@@ -15,7 +15,7 @@ const DemandeS = () => {
 
     let id = generateId();
     let { stagiaireId } = useParams();
-    
+
     const addDemande = async (e) => {
         e.preventDefault();
         const storageRef = ref(storage, `demande/${id}`);
@@ -56,9 +56,9 @@ const DemandeS = () => {
                         codepostal: codepostal,
                         universite: universite,
                         statut: statut,
-                        stagiaireId :stagiaireId
+                        stagiaireId: stagiaireId
                     });
-                    Navigate("/stagiaire/mesdemandes/"+stagiaireId);
+                    Navigate("/stagiaire/mesdemandes/" + stagiaireId);
                     toast.success('Demande envoyer', {
                         position: "top-center",
                         autoClose: 5000,
@@ -68,13 +68,13 @@ const DemandeS = () => {
                         draggable: true,
                         progress: undefined,
                     });
-                    
-                    console.log("Demande envoyer"); 
+
+                    console.log("Demande envoyer");
                 }
-        );
+                );
             }
         );
-        }
+    }
 
     const [nom, setNom] = useState("");
     const [prenom, setPrenom] = useState("");
@@ -92,26 +92,26 @@ const DemandeS = () => {
     return (
 
         <><NavBarS />
-            <div className="d-flex justify-content-center align-items-center">
-                <div>
-                    <h1 className="fw-bolder fs-1 d-block my-5">Formulaire d'une demande de stage </h1>
-                    <Form onSubmit={addDemande} method="post">
-                        <Card className="my-5">
-                            <Card.Body>
+            <div className="img1">
+                <div className="d-flex justify-content-center align-items-center">
+                    <div>
+                        <Form onSubmit={addDemande} method="post">
+                            <div className="glass-effect">
+                                <h1 className="fw-bolder fs-1 d-block my-5">Formulaire d'une demande de stage </h1>
                                 <div className="row">
                                     <div className="col-md-6">
                                         <Form.Label className="fs-5 fw-bold">Nom</Form.Label>
-                                        <Form.Control type="text" value={nom} onChange={(e) => setNom(e.target.value)} placeholder="Entrer votre nom" required></Form.Control>
+                                        <Form.Control bsClass="input1" type="text" value={nom} onChange={(e) => setNom(e.target.value)} placeholder="Entrer votre nom" required></Form.Control>
                                     </div>
                                     <div className="col-md-6">
                                         <Form.Label className="fs-5 fw-bold">Prénom</Form.Label>
-                                        <Form.Control type="text" value={prenom} onChange={(e) => setPrenom(e.target.value)} placeholder="Entrer votre prénom" required></Form.Control>
+                                        <Form.Control bsClass="input1" type="text" value={prenom} onChange={(e) => setPrenom(e.target.value)} placeholder="Entrer votre prénom" required></Form.Control>
                                     </div>
                                 </div>
                                 <div className="row my-3">
                                     <div className="col-md-8">
                                         <Form.Label className="fs-5 fw-bold">Address</Form.Label>
-                                        <Form.Control type="text" value={address} onChange={(e) => setAdress(e.target.value)} placeholder="Entrer votre address" required></Form.Control>
+                                        <Form.Control bsClass="input1" type="text" value={address} onChange={(e) => setAdress(e.target.value)} placeholder="Entrer votre address" required></Form.Control>
                                     </div>
                                     <div className="col-md-4">
                                         <Form.Label className="fs-5 fw-bold">Code postal</Form.Label>
@@ -130,7 +130,7 @@ const DemandeS = () => {
                                 <div className="row my-3">
                                     <div className="col-md-12">
                                         <Form.Label className="fs-5 fw-bold">E-mail</Form.Label>
-                                        <Form.Control type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Entrer votre e-mail" required></Form.Control>
+                                        <Form.Control bsClass="input1" type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Entrer votre e-mail" required></Form.Control>
                                     </div>
                                 </div>
                                 <div className="row my-3">
@@ -145,19 +145,19 @@ const DemandeS = () => {
                                 <div className="row my-3">
                                     <div className="col-md-12">
                                         <Form.Label className="fs-5 fw-bold">Niveau universitaire</Form.Label>
-                                        <Form.Control type="text" value={niveau} onChange={(e) => setNiveau(e.target.value)} placeholder="Entrer votre niveau universitaire" required></Form.Control>
+                                        <Form.Control bsClass="input1" type="text" value={niveau} onChange={(e) => setNiveau(e.target.value)} placeholder="Entrer votre niveau universitaire" required></Form.Control>
                                     </div>
                                 </div>
                                 <div className="row my-3">
                                     <div className="col-md-12">
                                         <Form.Label className="fs-5 fw-bold">Université</Form.Label>
-                                        <Form.Control type="text" value={universite} onChange={(e) => setUniversite(e.target.value)} placeholder="Entrer votre université actual" required></Form.Control>
+                                        <Form.Control bsClass="input1" type="text" value={universite} onChange={(e) => setUniversite(e.target.value)} placeholder="Entrer votre université actual" required></Form.Control>
                                     </div>
                                 </div>
                                 <div className="row my-3">
                                     <div className="col-md-12">
                                         <Form.Label className="fs-5 fw-bold">Deploye votre demande de stage</Form.Label>
-                                        <Form.Control type="file" onChange={(e) => setPdf(e.target.files[0])} accept=".pdf" placeholder="Entrer votre e-mail" required></Form.Control>
+                                        <Form.Control bsClass="input1" type="file" onChange={(e) => setPdf(e.target.files[0])} accept=".pdf" placeholder="Entrer votre e-mail" required></Form.Control>
                                     </div>
                                 </div>
                                 <div className="row my-3">
@@ -177,13 +177,12 @@ const DemandeS = () => {
                                         <Button variant="dark" type="submit" >Envoyer</Button>
                                     </div>
                                 </div>
-
-                            </Card.Body>
-                        </Card>
-                    </Form>
+                            </div>
+                        </Form>
+                    </div>
                 </div>
             </div>
-            <Footer/>
+            <Footer />
         </>
     )
 }

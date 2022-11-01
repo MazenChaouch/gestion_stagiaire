@@ -8,6 +8,15 @@
   height: 88vh;
   background-size: 100% 100%;
 }
+.img1{
+  background-image: url(https://img.freepik.com/premium-photo/watercolor-dark-blue-white-ombre-background-texture-royal-blue-gradient-backdrop-watercolour-stains-paper-hand-painted_145343-1702.jpg?w=2000);
+  background-size: cover; 
+}
+.img2{
+  background-image: url(https://img.freepik.com/premium-photo/watercolor-dark-blue-white-ombre-background-texture-royal-blue-gradient-backdrop-watercolour-stains-paper-hand-painted_145343-1702.jpg?w=2000);
+  height: 100vh;
+  background-size: 100% 100%;
+}
 .NavBar{
   background-color : rgb(0,0,0);
 
@@ -33,4 +42,28 @@
 }
 .Header{
   margin-top:auto;
+}
+.glass-effect{
+  border-radius: 25px;
+  background:linear-gradient(rgba(0,0,0,0.05),rgba(0,0,0,0.05));
+  box-shadow: 0 0 25px rgba(0,0,0,1);
+  margin-top: 25px;
+  margin-bottom: 25px;
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-top: 10px;
+  padding-bottom: 25px;
+
+}
+.form-control{
+  background: transparent;
+  outline: none;
+  border-radius: 10px;
+
+}
+.navbar{
+  background: rgb(0,0,0);
+}
+.footer{
+  background: rgb(0,0,0);
 }

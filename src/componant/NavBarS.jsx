@@ -8,15 +8,14 @@ const NavBarS = () => {
       navigate("/stagiaire/logins")
     } 
     return (
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+    <Navbar className='navbar' collapseOnSelect expand="lg"  variant="dark">
       <Container>
-        <Navbar.Brand >Gestion De Stagiaire</Navbar.Brand>
+        <Navbar.Brand ><Nav.Link href={`/`}>Gestion De Stagiaire</Nav.Link></Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
               <Nav.Link href={`../mesdemandes/${stagiaireId}`}>Mes Demande</Nav.Link>
               <Nav.Link href={`../demandes/${stagiaireId}`}>Faire une Demande</Nav.Link>
-              <Nav.Link href={`../endedstages/${stagiaireId}`}>Stage terminée</Nav.Link>
           </Nav>
           <Nav>
           <Button variant="light" onClick={logout}>Déconnexion</Button>

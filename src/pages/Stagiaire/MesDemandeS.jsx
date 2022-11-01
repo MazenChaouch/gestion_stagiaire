@@ -10,6 +10,7 @@ import PhoneInput from 'react-phone-number-input'
 import 'react-phone-number-input/style.css'
 import { toast } from "react-toastify";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import Footer from "../../componant/Footer";
 
 const MesDemandeS = () => {
     let { stagiaireId } = useParams();
@@ -145,12 +146,13 @@ const MesDemandeS = () => {
     return (
         <>
             <NavBarS />
+            <div className="img2">
             <div className="fs-1 fw-bold text-center p-5">
                 Mes Demandes
             </div>
-            <Table striped >
+            <Table className="table-bordered">
                 <thead>
-                    <tr className="text-center">
+                    <tr className="text-center bg-dark text-white">
                         <th>#</th>
                         <th>Nom</th>
                         <th>Prenom</th>
@@ -170,7 +172,7 @@ const MesDemandeS = () => {
                 <tbody>{
                     demande.map((d, index) => {
                         return (
-                            <tr key={index} className="text-center" >
+                            <tr key={index} className="text-center bg-light text-black" >
                                 <td>{index + 1}</td>
                                 <td>{d.nom}</td>
                                 <td>{d.prenom}</td>
@@ -193,7 +195,7 @@ const MesDemandeS = () => {
                 </tbody>
             </Table>
 
-
+            </div>
             <Modal show={show}
                 onHide={handleClose}
                 size="lg"
@@ -269,6 +271,7 @@ const MesDemandeS = () => {
 
                         </div>
                     </Form>
+                    
                 </ModalBody>
                 <ModalFooter>
                     <div className="row my-3">
@@ -281,6 +284,7 @@ const MesDemandeS = () => {
                     </div>
                 </ModalFooter>
             </Modal>
+            <Footer/>
         </>
     )
 }

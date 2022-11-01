@@ -1,8 +1,10 @@
 import NavBarE from "../../componant/NavBarE";
 import { fireStore } from "../../auth/Firebase";
-import { collection, doc, onSnapshot, query, updateDoc, where } from "firebase/firestore";
+import { collection, deleteDoc, doc, onSnapshot, query, updateDoc, where } from "firebase/firestore";
 import { useEffect, useState } from "react"
 import { Button, Table } from "react-bootstrap";
+import Footer from "../../componant/Footer";
+import { MdOutlineDelete } from "react-icons/md";
 const AcceptedDemandeE = () => {
 
     const [demande, setDemande] = useState([]);
@@ -37,12 +39,13 @@ const AcceptedDemandeE = () => {
     return (
         <>
             <NavBarE />
+            <div className="img2">
             <div className="fs-1 fw-bold text-center p-5">
                 Les Demandes Acceptées
             </div>
-            <Table striped>
+            <Table className="table-bordered">
                 <thead>
-                    <tr className="text-center">
+                    <tr className="text-center bg-dark text-white">
                         <th>#</th>
                         <th>Nom</th>
                         <th>Prenom</th>
@@ -57,12 +60,13 @@ const AcceptedDemandeE = () => {
                         <th>Date de start</th>
                         <th>Date de fin</th>
                         <th>Statut</th>
+                        <th>Supprimer</th>
                     </tr>
                 </thead>
                 <tbody>{
                     demande.map((d, index) => {
                             return ( 
-                                <tr key={index} className="text-center" >
+                                <tr key={index} className="text-center bg-light text-black" >
                                     <td>{index + 1}</td>
                                     <td>{d.nom}</td>
                                     <td>{d.prenom}</td>
@@ -77,6 +81,7 @@ const AcceptedDemandeE = () => {
                                     <td>{parsedate(d.datedestart)}</td>
                                     <td>{parsedate(d.datedefin)}</td>
                                     <td><Button variant="success" size="sm">{d.statut}</Button></td>
+                                    <td><Button variant="danger" size="sm" onClick={() => deleteDoc(doc(fireStore, "demande", d.id))}><MdOutlineDelete  size={25}/></Button></td>
                                 </tr>
                             )
                         }
@@ -84,6 +89,8 @@ const AcceptedDemandeE = () => {
                 }
                 </tbody>
             </Table>
+            </div>
+            <Footer/>
         </>
     )
 }
