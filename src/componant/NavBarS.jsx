@@ -5,6 +5,7 @@ const NavBarS = () => {
     const navigate = useNavigate();
     let { stagiaireId } = useParams();
     const logout = () => {
+      localStorage.removeItem("user")
       navigate("/stagiaire/logins")
     } 
     return (

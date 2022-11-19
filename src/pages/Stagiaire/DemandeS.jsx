@@ -9,13 +9,16 @@ import { toast } from 'react-toastify';
 import { setDoc, doc } from "firebase/firestore";
 import { fireStore, storage } from "../../auth/Firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { Navigate, useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import Footer from "../../componant/Footer";
+import { useEffect } from "react";
 const DemandeS = () => {
 
     let id = generateId();
     let { stagiaireId } = useParams();
-
+    let navigate = useNavigate()
+    const user = localStorage.getItem("user");
+    
     const addDemande = async (e) => {
         e.preventDefault();
         const storageRef = ref(storage, `demande/${id}`);
@@ -74,8 +77,13 @@ const DemandeS = () => {
                 );
             }
         );
+        
     }
-
+    useEffect(() => {
+        if (user!==stagiaireId){
+            navigate("/stagiaire/logins")
+        }
+        }, [])
     const [nom, setNom] = useState("");
     const [prenom, setPrenom] = useState("");
     const [email, setEmail] = useState("");

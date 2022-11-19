@@ -13,7 +13,7 @@ const Home = () => {
                 <div className="d-flex justify-content-center align-items-center h-100">
                     <div className="glass-effect">
 
-                        <h1 className="fw-bolder fs-1 d-block">Gestion de Stagiaire</h1>
+                        <h1 className="fw-bolder fs-1 d-block">ENVAST Stagiaire</h1>
 
                         <Form className="mt-5" >
                             <Container className="w-50 text-center">

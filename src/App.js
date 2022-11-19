@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState,useEffect } from "react";
 import { Route, Routes, BrowserRouter as Router, Navigate } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 
@@ -46,13 +46,12 @@ const App = () => {
         <Route exact path="/contact" element={<Contact />} />
         <Route exact path="/" element={<Home />} />
         <Route path="stagiaire">
-
-          <Route path="demandes/:stagiaireId" element={<DemandeS />} />
+          
+          <Route path="demandes/:stagiaireId" element={<DemandeS/>} />
           <Route path="mesdemandes/:stagiaireId" element={<MesDemandeS />} />
           
 
-
-          <Route path="logins" element={<LoginS />} />
+          <Route path="logins" element={<LoginS/>} />
           <Route path="signups" element={<SignUpS/>} />
 
 

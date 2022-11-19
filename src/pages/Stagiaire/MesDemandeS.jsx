@@ -1,11 +1,11 @@
 import { Button, Form, Modal, ModalBody, ModalFooter, ModalHeader, Table } from "react-bootstrap";
 import NavBarS from "../../componant/NavBarS";
 import { useEffect, useState } from "react"
-import { collection, deleteDoc, doc, onSnapshot, query, where, updateDoc, setDoc } from "firebase/firestore";
+import { collection, deleteDoc, doc, onSnapshot, query, where, setDoc } from "firebase/firestore";
 import { fireStore, storage } from "../../auth/Firebase";
 import { MdOutlineDelete } from "react-icons/md";
 import { TbEdit } from "react-icons/tb";
-import { Navigate, useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import PhoneInput from 'react-phone-number-input'
 import 'react-phone-number-input/style.css'
 import { toast } from "react-toastify";
@@ -14,9 +14,12 @@ import Footer from "../../componant/Footer";
 
 const MesDemandeS = () => {
     let { stagiaireId } = useParams();
+    let navigate = useNavigate()
+    const user = localStorage.getItem("user");
+    
     const [show, setShow] = useState(false);
     const [tempId, setTempId] = useState("");
-
+    
     const handleClose = () => setShow(false);
     const handleShow = (d) => {
         if (d.statut === "en attend") {
@@ -73,14 +76,25 @@ const MesDemandeS = () => {
             });
         });
     }
-    const addDemande = () => {
+    const addDemande = async(e) => {
+        e.preventDefault();
+
         const storageRef = ref(storage, `demande/${tempId}`);
         console.log("hello")
         const uploadTask = uploadBytesResumable(storageRef, pdf);
+        toast.info('Wait a sec!', {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            });
         uploadTask.on('state_changed',
             (snapshot) => {
                 const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                console.log('Upload is ' + progress + '% done');
+                console.log();
                 switch (snapshot.state) {
                     case 'paused':
                         console.log('Upload is paused');
@@ -100,7 +114,7 @@ const MesDemandeS = () => {
             },
             () => {
                 getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
-                     setDoc(doc(fireStore, "demande", tempId), {
+                    await setDoc(doc(fireStore, "demande", tempId), {
                         nom: nom,
                         prenom: prenom,
                         email: email,
@@ -115,6 +129,7 @@ const MesDemandeS = () => {
                         stagiaireId: stagiaireId })
                         
                     });
+                    handleClose();
                     toast.success('Demande Modifier', {
                         position: "top-center",
                         autoClose: 5000,
@@ -128,6 +143,9 @@ const MesDemandeS = () => {
                 );
             }
             useEffect(() => {
+                if (user!==stagiaireId){
+                    navigate("/stagiaire/logins")
+                }
                 getDemande();
             }, [])
     const [nom, setNom] = useState("");
@@ -199,12 +217,12 @@ const MesDemandeS = () => {
             <Modal show={show}
                 onHide={handleClose}
                 size="lg"
-            >
+            ><Form onSubmit={addDemande}>
                 <ModalHeader className="fw-bolder fs-3 text-center" closeButton>
-                    Modification d'une demande
+                    Modification d'u--ne demande
                 </ModalHeader>
                 <ModalBody>
-                    <Form onSubmit={addDemande} method="post">
+                    
                         <div className="row">
                             <div className="col-md-6">
                                 <Form.Label className="fs-5 fw-bold">Nom</Form.Label>
@@ -270,7 +288,7 @@ const MesDemandeS = () => {
                             </div>
 
                         </div>
-                    </Form>
+                    
                     
                 </ModalBody>
                 <ModalFooter>
@@ -283,6 +301,7 @@ const MesDemandeS = () => {
                         </div>
                     </div>
                 </ModalFooter>
+                </Form>
             </Modal>
             <Footer/>
         </>
