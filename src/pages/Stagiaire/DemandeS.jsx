@@ -47,7 +47,7 @@ const DemandeS = () => {
             },
             () => {
                 getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
-                    await setDoc(doc(fireStore, "demande", id), {
+                    setDoc(doc(fireStore, "demande", id), {
                         nom: nom,
                         prenom: prenom,
                         email: email,
@@ -61,7 +61,7 @@ const DemandeS = () => {
                         statut: statut,
                         stagiaireId: stagiaireId
                     });
-                    Navigate("/stagiaire/mesdemandes/" + stagiaireId);
+                    
                     toast.success('Demande envoyer', {
                         position: "top-center",
                         autoClose: 5000,
@@ -71,8 +71,8 @@ const DemandeS = () => {
                         draggable: true,
                         progress: undefined,
                     });
-
-                    console.log("Demande envoyer");
+                    navigate("/stagiaire/mesdemandes/" + stagiaireId);
+                    
                 }
                 );
             }

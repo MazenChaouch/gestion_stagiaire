@@ -109,6 +109,7 @@ const DemandeE = () => {
                                 filterDate={date => date.getDay() !== 6 && date.getDay() !== 0} // weekends cancel
                                 showYearDropdown // year show and scrolldown alos
                                 scrollableYearDropdown
+                                required
                             />
                         </div>
                         <div className="col-sm-6 px-3">
@@ -120,6 +121,7 @@ const DemandeE = () => {
                                 filterDate={date => date.getDay() !== 6 && date.getDay() !== 0} // weekends cancel
                                 showYearDropdown // year show and scrolldown alos
                                 scrollableYearDropdown
+                                required
                             />
                         </div>
                     </div>
